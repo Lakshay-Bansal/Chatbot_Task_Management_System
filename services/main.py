@@ -3,19 +3,18 @@ Source: https://github.com/xtekky/gpt4free
 '''
 import g4f
 
+from g4f.Provider import (
+    Aichat,
+    Bard,
+    Bing,
+    ChatgptAi,
+    OpenaiChat,
+)
+
 g4f.debug.logging = True # enable logging
 g4f.check_version = False # Disable automatic version checking
 print(g4f.version) # check version
 print(g4f.Provider.Ails.params)  # supported args
-
-# Automatic selection of provider
-
-# streamed completion
-# response = g4f.ChatCompletion.create(
-#     model="gpt-3.5-turbo",
-#     messages=[{"role": "user", "content": "I have meeting on Monday at 2pm and Metting on tuesday at 3pm, Now I received a another meeting at 3pm what should I do. Provide that information to me in a day wise calendre format. Give me a data in Calendre = Monday: pm: [], am: [], Tuesday: pm: [], am: [], Similarly for other days}"}],
-#     stream=True,
-# )
 
 # response = g4f.ChatCompletion.create(
 #     model="gpt-3.5-turbo",
@@ -29,7 +28,18 @@ print(g4f.Provider.Ails.params)  # supported args
 # normal response
 response = g4f.ChatCompletion.create(
     model=g4f.models.gpt_4,
-    messages=[{"role": "user", "content": "Update my calendre as I have a meeting at 2 pm on MOnday"}],
+    provider=g4f.Provider.Aichat,
+    messages=[{"role": "user", "content": "Extract just Day-Time-Meeting in a text from from following text - I have a meeting with Ai head at 2 pm on MOnday"}],
 )  # alternative model setting
 
 print(response)
+
+print("Line by line", type(response))
+for line in response.split('\n'):
+    # print(a)
+    if 'Day' in line:
+        print("Day",  line.split(' ')[-1])
+    elif 'Time' in line:
+        print("Time", line.split(' ')[2:])
+    elif 'Meeting' in line:
+        print("Purpose: ", line.split(' ')[1:])

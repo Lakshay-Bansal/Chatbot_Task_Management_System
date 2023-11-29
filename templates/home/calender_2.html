@@ -50,15 +50,22 @@
                                 <form method="post">
                                     {% csrf_token %}
                                     <div class="collection">
-                                        <input type="text" name="chat" placeholder="Write your request" maxlength="50" required id="chat">
+                                        <input type="text" name="chat" placeholder="Write your request" maxlength="200" required id="chat">
                                     </div>
-                                    <button class="btn waves-effect waves-light" type="submit" name="action" style="color: azure;">
-                                        Send
+                                    <button class="btn waves-effect waves-light" type="submit" name="action" value="create" style="color: azure;">
+                                        Create
+                                    </button>
+                                    <button class="btn waves-effect waves-light" type="submit" name="action"  value="update" style="color: azure;">
+                                        Update
+                                    </button>
+                                    <br><br>
+                                    <button class="btn waves-effect waves-light" type="submit" name="action" value="remove" style="color: azure;">
+                                        Remove
                                     </button>
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         {% endif %}

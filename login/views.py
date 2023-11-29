@@ -22,9 +22,11 @@ def Calender(request):
     if request.method == "POST":
         # print(loginForm) For debug purpose
         chat = request.POST['chat']
+        request_type = request.POST['action']
         print("Chatbot request:", chat)
+        print("Request type: ", request_type)
         # Calling gp4 for response to create a calender
-        g4_response(chat)
+        g4_response(request, chat, request_type)
     else:
         error = "Error in text"
 

@@ -15,11 +15,14 @@
                             <div class="dropdown-content">
                                 <a href="{% url 'Login' %}">Login</a>
                                 <a href="{% url 'home' %}">Home</a>
+                                <a href="{% url 'calender' %}">Calender</a>
                             </div>
                         </div>
                         {% if user.is_authenticated %}
                         <li><button type="submit" >
                             <a href="{% url 'signout' %}" style="color: rgb(165, 42, 42);"><b>Logot</b></a></button></li>
+                        <li><button type="submit" >
+                            <a href="{% url 'calender' %}" style="color: rgb(165, 42, 42);"><b>Calender</b></a></button></li>
                         {% else %}
                         <!-- <li><a href="#">Login</a></li> -->
                         {% endif %}
